@@ -4,9 +4,9 @@ import { UrlsTableComponent } from './urls-table/urls-table.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '/urls', component: UrlsTableComponent },
+  { path: 'urls', component: UrlsTableComponent },
   { path: '', redirectTo: '/urls', pathMatch: 'full' },
-  { path: '/login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

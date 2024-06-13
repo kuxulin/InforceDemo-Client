@@ -1,14 +1,8 @@
-import { Component, DestroyRef, Inject, OnInit } from '@angular/core';
-import User from '../models/User';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import Url from '../models/url';
-import { MatTableDataSource } from '@angular/material/table';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ROLES } from 'src/consts';
 import { AddUrlDialogComponent } from '../add-url-dialog/add-url-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UrlService } from '../services/url.service';
-import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-urls-table',
@@ -18,7 +12,7 @@ import { Observable, Subject } from 'rxjs';
 export class UrlsTableComponent implements OnInit {
   displayedColumns: string[] = ['longUrl', 'shortUrl', 'deleteColumn'];
 
-  user$ = this.authService.user$.asObservable();
+  user$ = this.authService.user.asObservable();
   urls$ = this.urlService.urls$;
 
   constructor(
@@ -37,9 +31,6 @@ export class UrlsTableComponent implements OnInit {
     let dialogConfig = new MatDialogConfig();
     dialogConfig.closeOnNavigation = true;
     dialogConfig.width = '40%';
-
-    let dialog = this.dialog.open(AddUrlDialogComponent, dialogConfig);
-
-    dialog.afterClosed();
+    this.dialog.open(AddUrlDialogComponent, dialogConfig);
   }
 }

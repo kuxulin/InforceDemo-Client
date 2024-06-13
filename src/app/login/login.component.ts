@@ -11,7 +11,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent {
   nameFormControl = new FormControl('', [Validators.required]);
-
   passwordFormControl = new FormControl('', [Validators.required]);
 
   constructor(private authService: AuthService, private router: Router) {}

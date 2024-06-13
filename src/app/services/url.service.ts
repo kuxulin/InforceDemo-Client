@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, pipe, take, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { SERVER_URL } from 'src/consts';
 import Url from '../models/url';
 import { AuthService } from './auth.service';

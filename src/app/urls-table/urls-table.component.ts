@@ -3,6 +3,8 @@ import { AuthService } from '../services/auth.service';
 import { AddUrlDialogComponent } from '../add-url-dialog/add-url-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UrlService } from '../services/url.service';
+import { take } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-urls-table',
@@ -32,5 +34,14 @@ export class UrlsTableComponent implements OnInit {
     dialogConfig.closeOnNavigation = true;
     dialogConfig.width = '40%';
     this.dialog.open(AddUrlDialogComponent, dialogConfig);
+  }
+
+  deleteUrl(id: string) {
+    this.urlService
+      .deleteUrl(id)
+      .pipe(take(1))
+      .subscribe({
+        error: (error: HttpErrorResponse) => alert(error.error.text),
+      });
   }
 }

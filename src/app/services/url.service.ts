@@ -25,4 +25,13 @@ export class UrlService {
       }
     );
   }
+
+  deleteUrl(id: string): Observable<any> {
+    return this.http.delete(this.routeApi, {
+      params: {
+        id,
+      },
+      headers: this.authService.generateAuthHeaders(),
+    });
+  }
 }

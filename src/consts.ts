@@ -5,8 +5,8 @@ export const LOCAL_STORAGE = {
 };
 
 export const CLAIMS = {
-  NAME: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
-  ROLES: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role',
+  NAME_CODE: 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name',
+  ROLES_CODE: 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role',
 };
 
 export const ROLES = {

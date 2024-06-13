@@ -32,8 +32,8 @@ export class AuthService {
   private getUserFromToken() {
     let decodedToken: any = jwtDecode(this.getToken()!);
     this.user$.next({
-      name: decodedToken[CLAIMS.NAME],
-      roles: decodedToken[CLAIMS.ROLES],
+      name: decodedToken[CLAIMS.NAME_CODE],
+      roles: decodedToken[CLAIMS.ROLES_CODE],
     });
   }
 
@@ -47,8 +47,16 @@ export class AuthService {
     localStorage.removeItem(LOCAL_STORAGE.TOKEN);
     this.user$.next(new User(undefined));
   }
+
   isLoggenIn(): boolean {
     let token = this.getToken();
     return !!token;
+  }
+
+  generateAuthHeaders() {
+    let token = this.getToken();
+    return {
+      Authorization: `Bearer ${token}`,
+    };
   }
 }

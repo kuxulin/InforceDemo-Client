@@ -3,7 +3,7 @@ export default class User {
   roles: string[];
 
   constructor(user: any) {
-    this.name = user.name;
-    this.roles = user.roles;
+    this.name = user?.name;
+    this.roles = user?.roles;
   }
 }

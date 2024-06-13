@@ -1,0 +1,21 @@
+<div>
+  <h2 mat-dialog-title>Paste the url</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Here</mat-label>
+      <input matInput [(ngModel)]="longUrlVersion" required="true" />
+    </mat-form-field>
+    <mat-label>{{ shortUrl }}</mat-label>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClose()">Discard</button>
+    <a
+      mat-raised-button
+      color="primary"
+      (click)="onSubmitClick()"
+      disabled="{{ !isFormFull() }}"
+      >Submit</a
+    >
+  </mat-dialog-actions>
+</div>

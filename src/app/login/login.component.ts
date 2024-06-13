@@ -28,7 +28,7 @@ export class LoginComponent {
           this.router.navigate(['/urls']);
         },
         error: (result: HttpErrorResponse) => {
-          alert(result.error);
+          alert(result.error.text);
         },
       });
   }

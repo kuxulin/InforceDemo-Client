@@ -31,7 +31,10 @@ export class AddUrlDialogComponent {
       .createUrl(this.longUrlVersion!)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (res) => (this.shortUrl = res.shortUrl),
+        next: (res) => {
+          this.urlService.fetchUrls();
+          this.shortUrl = res.shortUrl;
+        },
         error: (result) => {
           alert(result.error.text);
         },

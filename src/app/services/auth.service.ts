@@ -9,7 +9,7 @@ import User from '../models/User';
   providedIn: 'root',
 })
 export class AuthService {
-  user: BehaviorSubject<User> = new BehaviorSubject(new User(undefined));
+  user$: BehaviorSubject<User> = new BehaviorSubject(new User(undefined));
   private readonly routeApi = `${SERVER_URL}/Auth`;
 
   constructor(private http: HttpClient) {}
@@ -31,7 +31,7 @@ export class AuthService {
 
   private getUserFromToken() {
     let decodedToken: any = jwtDecode(this.getToken()!);
-    this.user.next({
+    this.user$.next({
       name: decodedToken[CLAIMS.NAME_CODE],
       roles: decodedToken[CLAIMS.ROLES_CODE],
     });
@@ -45,7 +45,7 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem(LOCAL_STORAGE.TOKEN);
-    this.user.next(new User(undefined));
+    this.user$.next(new User(undefined));
   }
 
   isLoggenIn(): boolean {

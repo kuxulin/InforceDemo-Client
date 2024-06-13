@@ -14,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class UrlsTableComponent implements OnInit {
   displayedColumns: string[] = ['longUrl', 'shortUrl', 'deleteColumn'];
 
-  user$ = this.authService.user.asObservable();
+  user$ = this.authService.user$;
   urls$ = this.urlService.urls$;
 
   constructor(
@@ -23,7 +23,9 @@ export class UrlsTableComponent implements OnInit {
     private urlService: UrlService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.urlService.fetchUrls();
+  }
 
   logOut() {
     this.authService.logOut();
@@ -41,6 +43,7 @@ export class UrlsTableComponent implements OnInit {
       .deleteUrl(id)
       .pipe(take(1))
       .subscribe({
+        next: () => this.urlService.fetchUrls(),
         error: (error: HttpErrorResponse) => alert(error.error.text),
       });
   }
